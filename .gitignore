@@ -5,3 +5,6 @@ dist/
 .env
 .env.*
 *.log
+# Strapi generated files
+.strapi-updater.json
+types/generated/

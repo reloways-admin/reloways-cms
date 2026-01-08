@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "knowledge_articles",
+  "collectionName": "people",
   "info": {
-    "singularName": "knowledge-article",
-    "pluralName": "knowledge-articles",
-    "displayName": "Knowledge Article"
+    "singularName": "person",
+    "pluralName": "people",
+    "displayName": "Person"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "Title": {
+    "fullName": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -24,17 +24,31 @@
       },
       "required": true
     },
-    "Slug": {
-      "type": "uid",
+    "roleTitle": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "targetField": "Title",
       "required": true
     },
-    "Content": {
+    "avatar": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "bio": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {
@@ -43,23 +57,22 @@
       },
       "required": true
     },
-    "Category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::knowledge-category.knowledge-category"
+    "isExpert": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
     },
-    "Order": {
-      "type": "integer",
+    "company": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
-    },
-    "author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::person.person"
     }
   }
 }
