@@ -447,7 +447,7 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     };
   };
   attributes: {
-    author: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
+    Author: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
     Category: Schema.Attribute.Relation<
       'oneToOne',
       'api::knowledge-category.knowledge-category'
@@ -491,13 +491,13 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    verifiedAt: Schema.Attribute.Date &
+    VerifiedAt: Schema.Attribute.Date &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    verifiedBy: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
+    VerifiedBy: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
   };
 }
 

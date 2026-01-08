@@ -56,17 +56,17 @@
         }
       }
     },
-    "author": {
+    "Author": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::person.person"
     },
-    "verifiedBy": {
+    "VerifiedBy": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::person.person"
     },
-    "verifiedAt": {
+    "VerifiedAt": {
       "type": "date",
       "pluginOptions": {
         "i18n": {
