@@ -52,6 +52,16 @@
       "relation": "oneToMany",
       "target": "api::knowledge-category.knowledge-category",
       "mappedBy": "location"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
