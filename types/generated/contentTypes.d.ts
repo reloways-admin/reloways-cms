@@ -467,6 +467,7 @@ export interface ApiKnowledgeArticleKnowledgeArticle
       'oneToMany',
       'api::knowledge-article.knowledge-article'
     >;
+    location: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
     Order: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -546,6 +547,7 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
       'oneToMany',
       'api::knowledge-category.knowledge-category'
     >;
+    location: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
     Order: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -566,6 +568,47 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
           localized: true;
         };
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
+  collectionName: 'locations';
+  info: {
+    displayName: 'Location';
+    pluralName: 'locations';
+    singularName: 'location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    knowledge_articles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::knowledge-article.knowledge-article'
+    >;
+    knowledge_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::knowledge-category.knowledge-category'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::location.location'
+    > &
+      Schema.Attribute.Private;
+    locations: Schema.Attribute.Relation<'oneToMany', 'api::location.location'>;
+    order: Schema.Attribute.Integer;
+    parent: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['continent', 'country', 'city']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1192,6 +1235,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::knowledge-article.knowledge-article': ApiKnowledgeArticleKnowledgeArticle;
       'api::knowledge-category.knowledge-category': ApiKnowledgeCategoryKnowledgeCategory;
+      'api::location.location': ApiLocationLocation;
       'api::person.person': ApiPersonPerson;
       'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;
