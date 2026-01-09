@@ -80,6 +80,12 @@
         "videos",
         "audios"
       ]
+    },
+    "location": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::location.location",
+      "inversedBy": "knowledge_categories"
     }
   }
 }
