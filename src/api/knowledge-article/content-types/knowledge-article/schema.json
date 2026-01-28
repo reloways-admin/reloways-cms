@@ -79,6 +79,18 @@
       "relation": "manyToOne",
       "target": "api::location.location",
       "inversedBy": "knowledge_articles"
+    },
+    "ContentBlocks": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "media.spotify-embed",
+        "content.text-block"
+      ]
     }
   }
 }

@@ -459,6 +459,14 @@ export interface ApiKnowledgeArticleKnowledgeArticle
           localized: true;
         };
       }>;
+    ContentBlocks: Schema.Attribute.DynamicZone<
+      ['media.spotify-embed', 'content.text-block']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
