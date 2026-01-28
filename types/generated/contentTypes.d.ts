@@ -453,7 +453,6 @@ export interface ApiKnowledgeArticleKnowledgeArticle
       'api::knowledge-category.knowledge-category'
     >;
     Content: Schema.Attribute.Blocks &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
