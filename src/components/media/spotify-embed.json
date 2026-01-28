@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_media_spotify_embeds",
+  "info": {
+    "displayName": "Spotify Embed"
+  },
+  "options": {},
+  "attributes": {
+    "spotifyUrl": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
