@@ -459,7 +459,7 @@ export interface ApiKnowledgeArticleKnowledgeArticle
         };
       }>;
     ContentBlocks: Schema.Attribute.DynamicZone<
-      ['media.spotify-embed', 'content.text-block']
+      ['media.spotify-embed', 'content.text-block', 'knowledge.checklist-smart']
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -484,6 +484,15 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Title'> &
       Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    SmartChecklist: Schema.Attribute.Component<
+      'knowledge.checklist-smart',
+      true
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

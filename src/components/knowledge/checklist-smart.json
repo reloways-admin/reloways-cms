@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_knowledge_checklist_smarts",
+  "info": {
+    "displayName": "Smart Checklist"
+  },
+  "options": {},
+  "attributes": {
+    "nameTask": {
+      "type": "string",
+      "required": true
+    },
+    "idTask": {
+      "type": "string",
+      "required": true
+    },
+    "descriptionShort": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "enumeration",
+      "required": true,
+      "default": "Everyone",
+      "enum": [
+        "Everyone",
+        "Freelancers",
+        "Employees",
+        "Students"
+      ]
+    },
+    "urgency": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 10
+    },
+    "dependencyTaskId": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "linkedArticle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::knowledge-article.knowledge-article"
+    }
+  },
+  "config": {}
+}

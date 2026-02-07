@@ -89,8 +89,19 @@
       },
       "components": [
         "media.spotify-embed",
-        "content.text-block"
+        "content.text-block",
+        "knowledge.checklist-smart"
       ]
+    },
+    "SmartChecklist": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "knowledge.checklist-smart",
+      "repeatable": true
     }
   }
 }
