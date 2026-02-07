@@ -41,6 +41,20 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::knowledge-article.knowledge-article"
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "default": "Bureaucracy",
+      "enum": [
+        "Finance",
+        "Housing",
+        "Bureaucracy",
+        "Health",
+        "Employment",
+        "Education",
+        "Lifestyle"
+      ]
     }
   },
   "config": {}
