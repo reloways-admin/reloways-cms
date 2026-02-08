@@ -440,17 +440,27 @@ export interface ApiAudienceAudience extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::audience.audience'
-    > &
-      Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
+    >;
+    Name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -502,7 +512,10 @@ export interface ApiKnowledgeArticleKnowledgeArticle
       'oneToMany',
       'api::knowledge-article.knowledge-article'
     >;
-    location: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
+    locations: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::location.location'
+    >;
     Order: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -650,7 +663,7 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
         };
       }>;
     knowledge_articles: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::knowledge-article.knowledge-article'
     >;
     knowledge_categories: Schema.Attribute.Relation<

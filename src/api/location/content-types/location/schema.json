@@ -62,9 +62,9 @@
     },
     "knowledge_articles": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::knowledge-article.knowledge-article",
-      "mappedBy": "location"
+      "mappedBy": "locations"
     },
     "knowledge_categories": {
       "type": "relation",
