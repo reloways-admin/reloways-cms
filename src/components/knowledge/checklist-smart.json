@@ -16,17 +16,6 @@
     "descriptionShort": {
       "type": "string"
     },
-    "audience": {
-      "type": "enumeration",
-      "required": true,
-      "default": "Everyone",
-      "enum": [
-        "Everyone",
-        "Freelancers",
-        "Employees",
-        "Students"
-      ]
-    },
     "urgency": {
       "type": "integer",
       "required": true,
@@ -55,6 +44,16 @@
         "Education",
         "Lifestyle"
       ]
+    },
+    "audiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::audience.audience"
+    },
+    "MissionTags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mission-tag.mission-tag"
     }
   },
   "config": {}

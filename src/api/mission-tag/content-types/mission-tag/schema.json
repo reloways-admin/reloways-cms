@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mission_tags",
+  "info": {
+    "singularName": "mission-tag",
+    "pluralName": "mission-tags",
+    "displayName": "Mission Tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "missionTag": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
