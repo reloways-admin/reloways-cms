@@ -74,9 +74,9 @@
         }
       }
     },
-    "location": {
+    "locations": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::location.location",
       "inversedBy": "knowledge_articles"
     },
