@@ -16,11 +16,20 @@ export interface KnowledgeChecklistSmart extends Struct.ComponentSchema {
     displayName: 'Smart Checklist';
   };
   attributes: {
-    audience: Schema.Attribute.Enumeration<
-      ['Everyone', 'Freelancers', 'Employees', 'Students']
+    audiences: Schema.Attribute.Relation<'oneToMany', 'api::audience.audience'>;
+    category: Schema.Attribute.Enumeration<
+      [
+        'Finance',
+        'Housing',
+        'Bureaucracy',
+        'Health',
+        'Employment',
+        'Education',
+        'Lifestyle',
+      ]
     > &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Everyone'>;
+      Schema.Attribute.DefaultTo<'Bureaucracy'>;
     dependencyTaskId: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 128;
@@ -30,6 +39,10 @@ export interface KnowledgeChecklistSmart extends Struct.ComponentSchema {
     linkedArticle: Schema.Attribute.Relation<
       'oneToOne',
       'api::knowledge-article.knowledge-article'
+    >;
+    MissionTags: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::mission-tag.mission-tag'
     >;
     nameTask: Schema.Attribute.String & Schema.Attribute.Required;
     urgency: Schema.Attribute.Integer &
