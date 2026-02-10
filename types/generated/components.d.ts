@@ -7,6 +7,7 @@ export interface ContentTextBlock extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.Blocks;
+    nameBlock: Schema.Attribute.String;
   };
 }
 
