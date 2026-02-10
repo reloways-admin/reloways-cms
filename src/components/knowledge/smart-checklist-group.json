@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_knowledge_smart_checklist_groups",
+  "info": {
+    "displayName": "SmartChecklistGroup"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "SmartChecklist": {
+      "type": "component",
+      "component": "knowledge.checklist-smart",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -497,7 +497,12 @@ export interface ApiKnowledgeArticleKnowledgeArticle
         };
       }>;
     ContentBlocks: Schema.Attribute.DynamicZone<
-      ['media.spotify-embed', 'content.text-block', 'knowledge.checklist-smart']
+      [
+        'media.spotify-embed',
+        'content.text-block',
+        'knowledge.checklist-smart',
+        'knowledge.smart-checklist-group',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
