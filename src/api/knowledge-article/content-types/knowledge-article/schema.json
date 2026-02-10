@@ -90,7 +90,8 @@
       "components": [
         "media.spotify-embed",
         "content.text-block",
-        "knowledge.checklist-smart"
+        "knowledge.checklist-smart",
+        "knowledge.smart-checklist-group"
       ]
     },
     "SmartChecklist": {
