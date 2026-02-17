@@ -104,12 +104,6 @@
       },
       "component": "knowledge.checklist-smart",
       "repeatable": true
-    },
-    "knowledge_articles": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::task.task",
-      "inversedBy": "knowledgeArticles"
     }
   }
 }

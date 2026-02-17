@@ -9,3 +9,7 @@ dist/
 .strapi-updater.json
 types/generated/
 .tmp/
+.tmp/
+.tmp/**
+**/.tmp/
+**/.tmp/**
