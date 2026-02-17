@@ -47,18 +47,6 @@
         }
       }
     },
-    "task": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::task.task",
-      "inversedBy": "dependencyTaskId"
-    },
-    "dependencyTaskId": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::task.task",
-      "mappedBy": "task"
-    },
     "audiences": {
       "type": "relation",
       "relation": "oneToMany",
@@ -88,6 +76,11 @@
       "relation": "oneToMany",
       "target": "api::location.location",
       "mappedBy": "tasks"
+    },
+    "depends_ons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task"
     }
   }
 }
