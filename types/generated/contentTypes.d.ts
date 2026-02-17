@@ -725,6 +725,7 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
     parent: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
+    tasks: Schema.Attribute.Relation<'manyToOne', 'api::task.task'>;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -932,6 +933,7 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
     >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
+    locations: Schema.Attribute.Relation<'oneToMany', 'api::location.location'>;
     missionTags: Schema.Attribute.Relation<
       'oneToMany',
       'api::mission-tag.mission-tag'

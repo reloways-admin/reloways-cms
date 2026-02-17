@@ -94,6 +94,12 @@
           "localized": true
         }
       }
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task.task",
+      "inversedBy": "locations"
     }
   }
 }
