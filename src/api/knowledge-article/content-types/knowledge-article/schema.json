@@ -91,7 +91,8 @@
         "media.spotify-embed",
         "content.text-block",
         "knowledge.checklist-smart",
-        "knowledge.smart-checklist-group"
+        "knowledge.smart-checklist-group",
+        "knowledge.smart-checklist-picker"
       ]
     },
     "SmartChecklist": {
@@ -103,6 +104,12 @@
       },
       "component": "knowledge.checklist-smart",
       "repeatable": true
+    },
+    "knowledge_articles": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task.task",
+      "inversedBy": "knowledgeArticles"
     }
   }
 }
