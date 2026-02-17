@@ -543,10 +543,6 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    knowledge_articles: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::task.task'
-    >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -927,8 +923,8 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    knowledgeArticles: Schema.Attribute.Relation<
-      'oneToMany',
+    linkedArticle: Schema.Attribute.Relation<
+      'oneToOne',
       'api::knowledge-article.knowledge-article'
     >;
     locale: Schema.Attribute.String;

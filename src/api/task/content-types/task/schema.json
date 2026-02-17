@@ -59,11 +59,10 @@
       "target": "api::mission-tag.mission-tag",
       "mappedBy": "MissionTags"
     },
-    "knowledgeArticles": {
+    "linkedArticle": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::knowledge-article.knowledge-article",
-      "mappedBy": "knowledge_articles"
+      "relation": "oneToOne",
+      "target": "api::knowledge-article.knowledge-article"
     },
     "categories": {
       "type": "relation",
