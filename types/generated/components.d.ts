@@ -72,6 +72,16 @@ export interface KnowledgeSmartChecklistGroup extends Struct.ComponentSchema {
   };
 }
 
+export interface KnowledgeSmartChecklistPicker extends Struct.ComponentSchema {
+  collectionName: 'components_knowledge_smart_checklist_pickers';
+  info: {
+    displayName: 'SmartChecklistPicker';
+  };
+  attributes: {
+    tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
+  };
+}
+
 export interface MediaSpotifyEmbed extends Struct.ComponentSchema {
   collectionName: 'components_media_spotify_embeds';
   info: {
@@ -88,6 +98,7 @@ declare module '@strapi/strapi' {
       'content.text-block': ContentTextBlock;
       'knowledge.checklist-smart': KnowledgeChecklistSmart;
       'knowledge.smart-checklist-group': KnowledgeSmartChecklistGroup;
+      'knowledge.smart-checklist-picker': KnowledgeSmartChecklistPicker;
       'media.spotify-embed': MediaSpotifyEmbed;
     }
   }

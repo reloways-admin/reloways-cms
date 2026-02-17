@@ -22,6 +22,12 @@
           "localized": true
         }
       }
+    },
+    "MissionTags": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task.task",
+      "inversedBy": "missionTags"
     }
   }
 }

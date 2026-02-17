@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_knowledge_smart_checklist_pickers",
+  "info": {
+    "displayName": "SmartChecklistPicker"
+  },
+  "options": {},
+  "attributes": {
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task"
+    }
+  },
+  "config": {}
+}

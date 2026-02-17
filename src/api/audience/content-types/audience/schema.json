@@ -23,6 +23,12 @@
         }
       },
       "required": true
+    },
+    "task": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::task.task",
+      "inversedBy": "audiences"
     }
   }
 }

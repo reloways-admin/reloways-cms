@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "nameTask": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "idTask": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descriptionShort": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "urgency": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task",
+      "inversedBy": "dependencyTaskId"
+    },
+    "dependencyTaskId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task",
+      "mappedBy": "task"
+    },
+    "audiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::audience.audience",
+      "mappedBy": "task"
+    },
+    "missionTags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mission-tag.mission-tag",
+      "mappedBy": "MissionTags"
+    },
+    "knowledgeArticles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::knowledge-article.knowledge-article",
+      "mappedBy": "knowledge_articles"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "tasks"
+    }
+  }
+}
