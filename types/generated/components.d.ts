@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CategoryDisclaimer extends Struct.ComponentSchema {
+  collectionName: 'components_category_disclaimers';
+  info: {
+    displayName: 'disclaimer';
+  };
+  attributes: {
+    customText: Schema.Attribute.Text;
+    disclaimerType: Schema.Attribute.Enumeration<
+      ['legal', 'financial', 'medical', 'general']
+    >;
+  };
+}
+
 export interface ContentTextBlock extends Struct.ComponentSchema {
   collectionName: 'components_content_text_blocks';
   info: {
@@ -20,13 +33,13 @@ export interface KnowledgeChecklistSmart extends Struct.ComponentSchema {
     audiences: Schema.Attribute.Relation<'oneToMany', 'api::audience.audience'>;
     category: Schema.Attribute.Enumeration<
       [
-        'Finance',
-        'Housing',
         'Bureaucracy',
-        'Health',
-        'Employment',
         'Education',
-        'Lifestyle',
+        'Employment',
+        'Finance',
+        'Health',
+        'Housing',
+        'Life in Germany',
       ]
     > &
       Schema.Attribute.Required &
@@ -92,14 +105,28 @@ export interface MediaSpotifyEmbed extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMetaSeo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_meta_seos';
+  info: {
+    displayName: 'metaSEO';
+  };
+  attributes: {
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.String;
+    ogImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'category.disclaimer': CategoryDisclaimer;
       'content.text-block': ContentTextBlock;
       'knowledge.checklist-smart': KnowledgeChecklistSmart;
       'knowledge.smart-checklist-group': KnowledgeSmartChecklistGroup;
       'knowledge.smart-checklist-picker': KnowledgeSmartChecklistPicker;
       'media.spotify-embed': MediaSpotifyEmbed;
+      'shared.meta-seo': SharedMetaSeo;
     }
   }
 }

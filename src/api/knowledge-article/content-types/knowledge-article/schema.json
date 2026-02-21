@@ -34,6 +34,38 @@
       "targetField": "Title",
       "required": true
     },
+    "coverImage": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "isEssential": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": false
+    },
+    "estimatedReadingTime": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "Content": {
       "type": "blocks",
       "pluginOptions": {
@@ -92,7 +124,8 @@
         "content.text-block",
         "knowledge.checklist-smart",
         "knowledge.smart-checklist-group",
-        "knowledge.smart-checklist-picker"
+        "knowledge.smart-checklist-picker",
+        "category.disclaimer"
       ]
     },
     "SmartChecklist": {
@@ -104,6 +137,16 @@
       },
       "component": "knowledge.checklist-smart",
       "repeatable": true
+    },
+    "metaSEO": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.meta-seo",
+      "repeatable": false
     }
   }
 }
