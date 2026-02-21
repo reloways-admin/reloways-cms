@@ -29,7 +29,9 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true,
+      "unique": true
     },
     "descriptionShort": {
       "type": "string",
@@ -78,8 +80,15 @@
     },
     "depends_ons": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::task.task"
+      "relation": "manyToMany",
+      "target": "api::task.task",
+      "inversedBy": "tasks"
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::task.task",
+      "inversedBy": "depends_ons"
     }
   }
 }

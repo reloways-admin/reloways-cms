@@ -36,13 +36,13 @@
       "required": true,
       "default": "Bureaucracy",
       "enum": [
-        "Finance",
-        "Housing",
         "Bureaucracy",
-        "Health",
-        "Employment",
         "Education",
-        "Lifestyle"
+        "Employment",
+        "Finance",
+        "Health",
+        "Housing",
+        "Life in Germany"
       ]
     },
     "audiences": {

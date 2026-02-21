@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_category_disclaimers",
+  "info": {
+    "displayName": "disclaimer"
+  },
+  "options": {},
+  "attributes": {
+    "disclaimerType": {
+      "type": "enumeration",
+      "enum": [
+        "legal",
+        "financial",
+        "medical",
+        "general"
+      ]
+    },
+    "customText": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
