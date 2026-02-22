@@ -684,9 +684,7 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
           localized: true;
         };
       }>;
-    Phase: Schema.Attribute.Enumeration<
-      ['PRE', 'WEEK1', 'FOUND', 'OPT', 'BIZ']
-    > &
+    Phase: Schema.Attribute.Enumeration<['PRE', 'WEEK1', 'FOUND', 'OPT']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
