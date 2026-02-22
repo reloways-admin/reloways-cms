@@ -86,6 +86,23 @@
       "relation": "manyToOne",
       "target": "api::location.location",
       "inversedBy": "knowledge_categories"
+    },
+    "Phase": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": "PRE",
+      "enum": [
+        "PRE",
+        "WEEK1",
+        "FOUND",
+        "OPT",
+        "BIZ"
+      ]
     }
   }
 }

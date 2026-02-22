@@ -684,6 +684,16 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
           localized: true;
         };
       }>;
+    Phase: Schema.Attribute.Enumeration<
+      ['PRE', 'WEEK1', 'FOUND', 'OPT', 'BIZ']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'PRE'>;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Title'> &
       Schema.Attribute.SetPluginOptions<{
