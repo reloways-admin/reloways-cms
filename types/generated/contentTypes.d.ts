@@ -935,6 +935,7 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
   collectionName: 'tasks';
   info: {
     displayName: 'Task';
+    mainField: 'idTask';
     pluralName: 'tasks';
     singularName: 'task';
   };
@@ -964,12 +965,7 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
       }>;
     idTask: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+      Schema.Attribute.Unique;
     linkedArticle: Schema.Attribute.Relation<
       'oneToOne',
       'api::knowledge-article.knowledge-article'

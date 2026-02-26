@@ -5,11 +5,11 @@
   },
   "options": {},
   "attributes": {
-    "nameTask": {
+    "idTask": {
       "type": "string",
       "required": true
     },
-    "idTask": {
+    "nameTask": {
       "type": "string",
       "required": true
     },
@@ -22,9 +22,10 @@
       "min": 1,
       "max": 10
     },
-    "dependencyTaskId": {
-      "type": "string",
-      "maxLength": 128
+    "dependencyTask": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task"
     },
     "linkedArticle": {
       "type": "relation",

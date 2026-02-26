@@ -4,7 +4,8 @@
   "info": {
     "singularName": "task",
     "pluralName": "tasks",
-    "displayName": "Task"
+    "displayName": "Task",
+    "mainField": "idTask"
   },
   "options": {
     "draftAndPublish": true
@@ -25,11 +26,6 @@
     },
     "idTask": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "required": true,
       "unique": true
     },
