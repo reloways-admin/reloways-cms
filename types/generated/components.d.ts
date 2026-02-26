@@ -44,10 +44,7 @@ export interface KnowledgeChecklistSmart extends Struct.ComponentSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Bureaucracy'>;
-    dependencyTaskId: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 128;
-      }>;
+    dependencyTask: Schema.Attribute.Relation<'oneToOne', 'api::task.task'>;
     descriptionShort: Schema.Attribute.String;
     idTask: Schema.Attribute.String & Schema.Attribute.Required;
     linkedArticle: Schema.Attribute.Relation<
