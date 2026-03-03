@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nationalities",
+  "info": {
+    "singularName": "nationality",
+    "pluralName": "nationalities",
+    "displayName": "Nationality",
+    "mainField": "name"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "isoCode": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "knowledge_articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge-article.knowledge-article",
+      "mappedBy": "nationalities"
+    }
+  }
+}
