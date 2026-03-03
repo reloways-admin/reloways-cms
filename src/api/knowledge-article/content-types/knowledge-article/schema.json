@@ -147,6 +147,53 @@
       },
       "component": "shared.meta-seo",
       "repeatable": false
+    },
+    "nationalities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::nationality.nationality",
+      "inversedBy": "knowledge_articles"
+    },
+    "editorialStatus": {
+      "type": "enumeration",
+      "enum": [
+        "idea",
+        "draft",
+        "in_review",
+        "approved",
+        "scheduled"
+      ],
+      "default": "draft"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "default": "medium"
+    },
+    "internalNotes": {
+      "type": "text"
+    },
+    "adaptedFrom": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::knowledge-article.knowledge-article"
+    },
+    "relatedArticles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge-article.knowledge-article",
+      "inversedBy": "relatedArticlesInverse"
+    },
+    "relatedArticlesInverse": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge-article.knowledge-article",
+      "mappedBy": "relatedArticles"
     }
   }
 }

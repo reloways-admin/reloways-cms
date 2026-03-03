@@ -524,6 +524,10 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     };
   };
   attributes: {
+    adaptedFrom: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::knowledge-article.knowledge-article'
+    >;
     Author: Schema.Attribute.Relation<'oneToOne', 'api::person.person'>;
     Category: Schema.Attribute.Relation<
       'oneToOne',
@@ -561,12 +565,17 @@ export interface ApiKnowledgeArticleKnowledgeArticle
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    editorialStatus: Schema.Attribute.Enumeration<
+      ['idea', 'draft', 'in_review', 'approved', 'scheduled']
+    > &
+      Schema.Attribute.DefaultTo<'draft'>;
     estimatedReadingTime: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    internalNotes: Schema.Attribute.Text;
     isEssential: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -589,13 +598,29 @@ export interface ApiKnowledgeArticleKnowledgeArticle
           localized: true;
         };
       }>;
+    nationalities: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nationality.nationality'
+    >;
     Order: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    priority: Schema.Attribute.Enumeration<
+      ['critical', 'high', 'medium', 'low']
+    > &
+      Schema.Attribute.DefaultTo<'medium'>;
     publishedAt: Schema.Attribute.DateTime;
+    relatedArticles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::knowledge-article.knowledge-article'
+    >;
+    relatedArticlesInverse: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::knowledge-article.knowledge-article'
+    >;
     Slug: Schema.Attribute.UID<'Title'> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -816,6 +841,58 @@ export interface ApiMissionTagMissionTag extends Struct.CollectionTypeSchema {
         };
       }>;
     MissionTags: Schema.Attribute.Relation<'manyToOne', 'api::task.task'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNationalityNationality extends Struct.CollectionTypeSchema {
+  collectionName: 'nationalities';
+  info: {
+    displayName: 'Nationality';
+    mainField: 'name';
+    pluralName: 'nationalities';
+    singularName: 'nationality';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    isoCode: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    knowledge_articles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::knowledge-article.knowledge-article'
+    >;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nationality.nationality'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1513,6 +1590,7 @@ declare module '@strapi/strapi' {
       'api::knowledge-category.knowledge-category': ApiKnowledgeCategoryKnowledgeCategory;
       'api::location.location': ApiLocationLocation;
       'api::mission-tag.mission-tag': ApiMissionTagMissionTag;
+      'api::nationality.nationality': ApiNationalityNationality;
       'api::person.person': ApiPersonPerson;
       'api::tag.tag': ApiTagTag;
       'api::task.task': ApiTaskTask;
