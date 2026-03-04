@@ -100,6 +100,12 @@
       "relation": "manyToOne",
       "target": "api::task.task",
       "inversedBy": "locations"
+    },
+    "essentialServices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::essential-service.essential-service",
+      "mappedBy": "city"
     }
   }
 }

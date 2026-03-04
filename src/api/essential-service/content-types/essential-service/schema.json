@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "essential_services",
+  "info": {
+    "singularName": "essential-service",
+    "pluralName": "essential-services",
+    "displayName": "Essential Service",
+    "description": "Reloways-curated institutional directory: emergency contacts, government offices, hospitals, community organisations"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "general",
+        "household",
+        "hospitals",
+        "jewish-community"
+      ]
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "hoursOfOperation": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "website": {
+      "type": "string"
+    },
+    "secondaryUrl": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "city": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::location.location",
+      "inversedBy": "essentialServices"
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
