@@ -94,8 +94,6 @@
           "localized": true
         }
       },
-      "required": true,
-      "default": "PRE",
       "enum": [
         "PRE",
         "ARRIVE",
