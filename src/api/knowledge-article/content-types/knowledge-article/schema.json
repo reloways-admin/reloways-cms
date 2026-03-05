@@ -194,6 +194,15 @@
       "relation": "manyToMany",
       "target": "api::knowledge-article.knowledge-article",
       "mappedBy": "relatedArticles"
+    },
+    "phase": {
+      "type": "enumeration",
+      "enum": [
+        "PRE",
+        "ARRIVE",
+        "SETTLE",
+        "LOCAL"
+      ]
     }
   }
 }

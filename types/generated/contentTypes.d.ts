@@ -507,6 +507,73 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEssentialServiceEssentialService
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'essential_services';
+  info: {
+    description: 'Reloways-curated institutional directory: emergency contacts, government offices, hospitals, community organisations';
+    displayName: 'Essential Service';
+    pluralName: 'essential-services';
+    singularName: 'essential-service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    category: Schema.Attribute.Enumeration<
+      ['general', 'household', 'hospitals', 'jewish-community']
+    > &
+      Schema.Attribute.Required;
+    city: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    displayOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    hoursOfOperation: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::essential-service.essential-service'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    notes: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    phone: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    secondaryUrl: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website: Schema.Attribute.String;
+  };
+}
+
 export interface ApiKnowledgeArticleKnowledgeArticle
   extends Struct.CollectionTypeSchema {
   collectionName: 'knowledge_articles';
@@ -762,6 +829,10 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    essentialServices: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::essential-service.essential-service'
+    >;
     icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1586,6 +1657,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::audience.audience': ApiAudienceAudience;
       'api::category.category': ApiCategoryCategory;
+      'api::essential-service.essential-service': ApiEssentialServiceEssentialService;
       'api::knowledge-article.knowledge-article': ApiKnowledgeArticleKnowledgeArticle;
       'api::knowledge-category.knowledge-category': ApiKnowledgeCategoryKnowledgeCategory;
       'api::location.location': ApiLocationLocation;
