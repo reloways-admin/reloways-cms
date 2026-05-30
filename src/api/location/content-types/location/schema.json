@@ -97,9 +97,9 @@
     },
     "tasks": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::task.task",
-      "inversedBy": "locations"
+      "mappedBy": "locations"
     },
     "essentialServices": {
       "type": "relation",

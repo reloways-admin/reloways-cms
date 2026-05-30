@@ -70,9 +70,9 @@
     },
     "locations": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::location.location",
-      "mappedBy": "tasks"
+      "inversedBy": "tasks"
     },
     "depends_ons": {
       "type": "relation",
