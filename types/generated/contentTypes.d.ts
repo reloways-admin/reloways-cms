@@ -507,6 +507,58 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
+  collectionName: 'channels';
+  info: {
+    displayName: 'Channel';
+    mainField: 'name';
+    pluralName: 'channels';
+    singularName: 'channel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    episodes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::podcast-episode.podcast-episode'
+    >;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel.channel'
+    >;
+    logo: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtubeChannelId: Schema.Attribute.String;
+  };
+}
+
 export interface ApiEssentialServiceEssentialService
   extends Struct.CollectionTypeSchema {
   collectionName: 'essential_services';
@@ -675,6 +727,7 @@ export interface ApiKnowledgeArticleKnowledgeArticle
           localized: true;
         };
       }>;
+    phase: Schema.Attribute.Enumeration<['PRE', 'ARRIVE', 'SETTLE', 'LOCAL']>;
     priority: Schema.Attribute.Enumeration<
       ['critical', 'high', 'medium', 'low']
     > &
@@ -688,6 +741,7 @@ export interface ApiKnowledgeArticleKnowledgeArticle
       'manyToMany',
       'api::knowledge-article.knowledge-article'
     >;
+    showBusinessTypes: Schema.Attribute.JSON;
     Slug: Schema.Attribute.UID<'Title'> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -769,7 +823,10 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
       'oneToMany',
       'api::knowledge-category.knowledge-category'
     >;
-    location: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
+    locations: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::location.location'
+    >;
     Order: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -777,13 +834,11 @@ export interface ApiKnowledgeCategoryKnowledgeCategory
         };
       }>;
     Phase: Schema.Attribute.Enumeration<['PRE', 'ARRIVE', 'SETTLE', 'LOCAL']> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
-      }> &
-      Schema.Attribute.DefaultTo<'PRE'>;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Title'> &
       Schema.Attribute.SetPluginOptions<{
@@ -844,7 +899,7 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
       'api::knowledge-article.knowledge-article'
     >;
     knowledge_categories: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::knowledge-category.knowledge-category'
     >;
     locale: Schema.Attribute.String;
@@ -862,7 +917,7 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
     parent: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
-    tasks: Schema.Attribute.Relation<'manyToOne', 'api::task.task'>;
+    tasks: Schema.Attribute.Relation<'manyToMany', 'api::task.task'>;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1039,6 +1094,82 @@ export interface ApiPersonPerson extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPodcastEpisodePodcastEpisode
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'podcast_episodes';
+  info: {
+    displayName: 'Podcast Episode';
+    mainField: 'title';
+    pluralName: 'podcast-episodes';
+    singularName: 'podcast-episode';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    applePodcastLink: Schema.Attribute.String;
+    channel: Schema.Attribute.Relation<'manyToOne', 'api::channel.channel'>;
+    coverImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    coverImageUrl: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    episodeNumber: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::podcast-episode.podcast-episode'
+    >;
+    locations: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::location.location'
+    >;
+    nationalities: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::nationality.nationality'
+    >;
+    publishDate: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    showInHomepage: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    slug: Schema.Attribute.UID<'title'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    spotifyLink: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtubeVideoId: Schema.Attribute.String;
+  };
+}
+
 export interface ApiTagTag extends Struct.CollectionTypeSchema {
   collectionName: 'tags';
   info: {
@@ -1120,7 +1251,10 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
     >;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
-    locations: Schema.Attribute.Relation<'oneToMany', 'api::location.location'>;
+    locations: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::location.location'
+    >;
     missionTags: Schema.Attribute.Relation<
       'oneToMany',
       'api::mission-tag.mission-tag'
@@ -1657,6 +1791,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::audience.audience': ApiAudienceAudience;
       'api::category.category': ApiCategoryCategory;
+      'api::channel.channel': ApiChannelChannel;
       'api::essential-service.essential-service': ApiEssentialServiceEssentialService;
       'api::knowledge-article.knowledge-article': ApiKnowledgeArticleKnowledgeArticle;
       'api::knowledge-category.knowledge-category': ApiKnowledgeCategoryKnowledgeCategory;
@@ -1664,6 +1799,7 @@ declare module '@strapi/strapi' {
       'api::mission-tag.mission-tag': ApiMissionTagMissionTag;
       'api::nationality.nationality': ApiNationalityNationality;
       'api::person.person': ApiPersonPerson;
+      'api::podcast-episode.podcast-episode': ApiPodcastEpisodePodcastEpisode;
       'api::tag.tag': ApiTagTag;
       'api::task.task': ApiTaskTask;
       'plugin::content-releases.release': PluginContentReleasesRelease;
