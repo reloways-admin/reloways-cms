@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "podcast_episodes",
+  "info": {
+    "singularName": "podcast-episode",
+    "pluralName": "podcast-episodes",
+    "displayName": "Podcast Episode",
+    "mainField": "title"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "episodeNumber": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "youtubeVideoId": {
+      "type": "string"
+    },
+    "spotifyLink": {
+      "type": "string"
+    },
+    "applePodcastLink": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "coverImageUrl": {
+      "type": "string"
+    },
+    "publishDate": {
+      "type": "datetime"
+    },
+    "showInHomepage": {
+      "type": "boolean",
+      "default": false
+    },
+    "channel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::channel.channel",
+      "inversedBy": "episodes"
+    },
+    "nationalities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::nationality.nationality"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location"
+    }
+  }
+}
